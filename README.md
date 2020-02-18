@@ -1,57 +1,12 @@
-# 数据结构笔记
+# 数据结构笔记 -------by 爱彤彤的焕焕
 
-## 目录：
+## 目录
 
-### 第一章
+## 第一章 线性表
 
-- ##### 1、线性表
+### 第一节 [顺序表]( [https://github.com/MingHuan-L/text/blob/master/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E8%A1%A8/%E7%AC%AC%E4%B8%80%E8%8A%82%20%20%E7%BA%BF%E6%80%A7%E8%A1%A8.md](https://github.com/MingHuan-L/text/blob/master/第一章 线性表/第一节  线性表.md) )
 
-  - ##### 什么是线性表
+### 第二节 单链表
 
-    - ##### 	“线性表”：由同类型数据元素构成有序序列的线性结
+### 第三节 双链表
 
-  1. 表中元素个数称为线性表的**长度**
-  
-  2. 线性表没有元素时，称为**空表**
-  
-3. 表起始位置称为**表头**，表结束位置称**表尾
-  
-     #### //单链表结点类型描述
-  
-     ```
-     typedef struct LNODE
-     {
-     	elemtype data;
-     	struct LNODE *next;
-     }LNODE,*Linklist;
-     
-     ```
-  
-     #### //头插法建立单链表
-  
-     ```
-     LinkList creatList(LinkList &L)
-     {
-     	LNODE *s;
-     	int x;		//创建头结点
-     	L=(LinkList)malloc(sizeof(LNODE));
-     	L->next=NULL; //初始化为空表
-     	cin>>x;
-     	while(x!=99999)
-     	{
-     		s=(LNODE*)malloc(sizeof(LNODE));
-     		s->data=x;
-     		s->next=L->next;
-     		L->next=s;
-     		cin>>x;
-     	}
-     	return L;
-     }
-     ```
-  
-     
-  
-     
-  
-
- 
