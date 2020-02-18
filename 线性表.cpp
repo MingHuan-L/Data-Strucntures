@@ -327,13 +327,13 @@ void creat(Sqlist &L)
 
 
 
-
-
 int main()
 {
 	Sqlist L;
+	cout << "qjsxxb" << endl;
 	creat(L);
 	output(L);
+	meum();
 	return 0;
 }
 
