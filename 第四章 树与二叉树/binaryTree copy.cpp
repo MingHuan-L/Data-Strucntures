@@ -15,7 +15,7 @@ int BST_Insert(BiTree &T, int k)
         T = new BiTnode;
         T->data = k;
         T->lchild = T->rchild = NULL;
-        return 1;
+        return 0;
     }
     else if (k == T->data)
         return 0; //same value,don't insert
