@@ -1,8 +1,4 @@
-﻿// 线性表.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//
-
-#include "pch.h"
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <math.h>
 #include <algorithm>
@@ -333,7 +329,6 @@ int main()
 	cout << "qjsxxb" << endl;
 	creat(L);
 	output(L);
-	meum();
 	return 0;
 }
 

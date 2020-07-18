@@ -1,4 +1,5 @@
-#define elemtype int;
+#define elemtype int
+#include <iostream>
 typedef struct Lnode{
     elemtype data;
     struct Lnode *next;
