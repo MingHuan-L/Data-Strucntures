@@ -5,12 +5,13 @@
 #include <stack>
 #define maxvertex 100
 
+bool visted[maxvertex];
 /* typedef struct graph{
     Vnode *vertex[maxvertex];
     int vexnum,arcnum;
 }graph; */
 int G[maxvertex][maxvertex];    //邻接矩阵表示法
-class graph1
+/* class graph1
 {
     int G[maxvertex][maxvertex];
 public:
@@ -43,8 +44,7 @@ int graph1::bfs(int G,int v)
         }
     }
     
-
-}
+} */
 
 
 typedef struct Arcnode //边表结点
@@ -122,7 +122,7 @@ void add_arc(graph &G, int num, int to, int weight)
     else
         return -1;  //否则返回-1；
 } */
-bool visted[maxvertex];
+
 void BFS(graph G, int v) //从顶点v出发，广度优先遍历图G
 {
     std::cout << G.vertex1[v].data << " "; //访问结点v
@@ -212,37 +212,37 @@ void dijistra(graph G,int v)
         path[i]=-1;     
     } 
     Arcnode *p=G.vertex1[v].first;    //p指向顶点v的边
-    while(p)     //如果v0于vi之间存在边
-    {
-        int i=p->adjvex;    
-        dist[i]=p->weigtht;      //将边赋值
-        path[i]=v;        //结点i的前驱结点为v
-        p=p->next;
-    } 
     s[v]=true;  //顶点v加入s集
     path[v]=-1;
     dist[v]=0;
-/*     for(int i=0;i<G.vexnum;++i)     //找dist数组中最短的边
+    int k;
+    int u=v;
+    for(int i=0;i<G.vexnum;++i)     //
     {
-        int min=INT_MAX;        //
-        int u;          //最小边的顶点
-        for(int j=0;j<G.vexnum;j++)
-        {
-            if(s[j]==false&&dist[j]<min)     //找最短的边
-                min=dist[j];        //
-                u=j;        
+        int min=INT_MAX;        
+        while(p!=NULL){
+            k=p->adjvex;
+            if(s[k]!=true&&dist[u]+p->weigtht<dist[k]){     
+                dist[k]=dist[u]+p->weigtht;
+                path[k]=u;
+            }
+            p=p->next;
         }
-        s[u]=true;    //找到最短边的顶点
-        for(int j=0;j<G.vexnum;j++)
-        {
-            if(s[j]==false&&dist[u]+G.vertex1[u].first->weigtht<dist[j])
-            {
-                dist[j]=dist[u]+G.vertex1[u].first->weigtht;
-                path[j]=u;
+        int max=INT_MAX;
+        for(int j=0;j<G.vexnum;++j){
+            if(dist[j]>0&&dist[j]<max&&s[j]==false){        //找到最近的邻接顶点
+                max=dist[j];
+                u=j;    //u指向最近的顶点
             }
         }
-    } */
+        s[u]=true;  //放问标记
+        p=G.vertex1[u].first;   //p指向最近顶点的邻接边
+    }   //至此已找到顶点v到其他结点的所有最短路径。
+    for(int i=0;i<G.vexnum;i++){
+        std::cout<<v<<" to v"<<i<<" is "<<dist[i]<<" ";
+    }
 }
+
 int main()
 {
     graph G;
@@ -255,17 +255,22 @@ int main()
     {
         add_arc(G,num,to,weight);   //默认图为1→2→3→4→5→6
     }  */
-    add_arc(G, 0, 1, weight);
-    add_arc(G, 0, 3, weight);
-    add_arc(G, 0, 4, weight);
-    add_arc(G, 0, 2, weight);
+    add_arc(G, 0, 1, 5);
+    add_arc(G, 0, 3, 2);
+    add_arc(G, 0, 4, 1);
+    add_arc(G, 0, 2, 10);
     add_arc(G, 3, 6, weight);
     add_arc(G, 6, 4, weight);
-    add_arc(G, 4, 1, weight);
+    add_arc(G, 4, 1,3);
     add_arc(G, 4, 7, weight);
     add_arc(G, 7, 5, weight);
     add_arc(G, 5, 8, weight);
     add_arc(G, 5, 2, weight);
+    for(int i=0;i<8;++i){
+        dijistra(G,i);
+        std::cout<<std::endl;
+    }
+   // dijistra(G,0);
     //   BFStraverse(G);
     DFStraverse(G);
     system("pause");
