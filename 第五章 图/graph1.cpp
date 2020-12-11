@@ -242,6 +242,25 @@ void dijistra(graph G,int v)
         std::cout<<v<<" to v"<<i<<" is "<<dist[i]<<" ";
     }
 }
+const int m=10;
+void floyd(int A[m][m]){
+    int path[m][m];
+    int i,j,v;
+    for(i=0;i<m;++i){
+        for(j=0;j<m;j++)
+            path[i][j]=-1;
+    }
+    for(v=0;v<m;++v){
+        for(i=0;i<m;++i){
+            for(j=0;j<m;j++){
+                if(A[i][j]>A[i][v]+A[v][j]){
+                    A[i][j]=A[i][v]+A[v][j];
+                    path[i][j]=v;
+                }
+            }
+        }
+    }
+}
 
 int main()
 {
