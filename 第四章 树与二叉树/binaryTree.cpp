@@ -195,6 +195,48 @@ void postorder2(BiTree T)
         }
     }
 }
+void postorder3(BiTree T)
+{
+    //后序遍历非递归算法
+    stack1 S[maxsize];
+    BiTnode *p = T;
+    int top = -1; //栈顶指针
+    while (p || top != -1)
+    {
+        if (p)      
+        {
+            S[++top].t = p;
+            S[top].tag = 0; //根节点入队
+            p = p->lchild;
+        }
+/*         else{
+            while (top != -1 && S[top].tag == 1)
+            {
+                p = S[top--].t;
+                visit(p);
+                p = NULL;
+            }
+            if (top != -1)
+            {
+                S[top].tag = 1; //
+                p = S[top].t->rchild;
+            }
+        } */ 
+        else{
+            p=S[top].t;     //读取栈顶结点
+            if(p->rchild&&S[top].tag!=1){       //如果栈顶结点的右子树存在且未入栈
+                p=p->rchild;S[top].tag=1;   //转向栈顶结点的右子树  
+                S[++top].t=p;S[top].tag=0;  //右子树入栈
+                p=p->lchild;        //向左
+            }
+            else{       //右子树不存在
+                    p=S[top--].t;   
+                    visit(p);   //放问
+                    p=NULL;       //p指针置为空
+            }
+        }
+    }
+}
 void levelorder(BiTree T)
 {
     queue<BiTree>Q; //队列q
