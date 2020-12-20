@@ -13,6 +13,13 @@ typedef struct BiTnode
     struct BiTnode *lchild, *rchild; //左右子树
 } BiTnode, *BiTree;                  //二叉树结点，二叉树
 
+
+typedef struct
+{
+    BiTree t;
+    int tag;    //tag=0表示左子树入栈，tag=1表示右子树入栈
+} stack1;
+
 int radomnum(int A[])
 {
     int range = maxsize;
@@ -206,20 +213,20 @@ void postorder3(BiTree T)
         if (p)      
         {
             S[++top].t = p;
-            S[top].tag = 0; //根节点入队
+            S[top].tag = 0; //左子树入队
             p = p->lchild;
         }
 /*         else{
-            while (top != -1 && S[top].tag == 1)
+            while (top != -1 && S[top].tag == 1)    //如果栈顶结点的右子树已入队，则直接访问
             {
                 p = S[top--].t;
                 visit(p);
                 p = NULL;
             }
-            if (top != -1)
+            if (top != -1)      //栈顶结点右子树未入队
             {
                 S[top].tag = 1; //
-                p = S[top].t->rchild;
+                p = S[top].t->rchild;   //向右走
             }
         } */ 
         else{
